@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+
+@layer base {
+
+  :root {
+    --background: 27 27 27;
+    --foreground: 225 225 225;
+    --muted: 115 115 115;
+    --accent: 254 254 91;
+  }
+
+}
+
+
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+
+/* Button styles */
+.buttonsWrapper button {
+  @apply px-1 m-1 bg-lime-700 text-[#1d1d1d] rounded-[0.4em] border-2 border-solid border-lime-700  hover:bg-lime-500 disabled:bg-[rgba(255,255,255,0.1)] disabled:text-lime-500;
+}
+
+.is-active{
+  @apply shadow-lg shadow-white/100
+}
+
+/* Basic editor styles */
+.tiptap {
+  @apply py-3 px-5 border-lime-700 rounded-lg border-2 mb-10 prose max-w-none [&_ol]:list-decimal  [&_ul]:list-disc text-white prose-headings:text-white prose-strong:text-white prose-blockquote:text-white;
+}
+.tiptap:focus-visible {
+  outline: none;
+}
+.tiptap > * + * {
+  @apply mt-[0.75em];
+}
+.tiptap ul,
+.tiptap ol {
+  @apply px-4 py-0;
+}
+.tiptap h1,
+.tiptap h2,
+.tiptap h3,
+.tiptap h4,
+.tiptap h5,
+.tiptap h6 {
+  @apply leading-[1.1];
+}
+.tiptap code {
+  @apply text-[rgba(255,255,255,0.6)] border p-[0.2rem] rounded-lg border-solid border-[rgba(255,255,255,0.1)];
+  
+}
+.tiptap pre {
+  @apply px-4 py-3 rounded-lg;
+  
+  font-family: "JetBrainsMono", monospace;
+}
+.tiptap pre code {
+  @apply text-inherit text-[0.8rem] p-0 border-[none];
+}
+.tiptap img {
+  @apply max-w-full h-auto;
+}
+.tiptap blockquote {
+  @apply ml-0 pl-4 border-l-2 border-l-[rgba(255,255,255,0.4)] border-solid;
+}
+.tiptap hr {
+  @apply mx-0 my-8 border-t-2 border-t-[rgba(255,255,255,0.1)] border-[none] border-solid;
+}
+
