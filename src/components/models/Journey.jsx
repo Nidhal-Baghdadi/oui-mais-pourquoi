@@ -4,7 +4,7 @@ import { useGLTF } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 import { Raycaster, Vector2 } from "three";
 import { useRouter } from "next/navigation";
-import Banner from "./Banner";
+import Banner from "@/components/models/Banner";
 import font from "@public/fonts/gt.json";
 
 export default function Model(props) {

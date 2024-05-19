@@ -3,7 +3,7 @@ import React, { useRef, useState } from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 import { Raycaster, Vector2 } from "three";
-import Banner from "./Banner";
+import Banner from "@/components/models/Banner";
 import font from "@public/fonts/gt.json";
 
 export default function Model(props) {

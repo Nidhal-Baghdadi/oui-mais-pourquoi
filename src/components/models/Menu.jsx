@@ -26,6 +26,10 @@ const Menu = (props) => {
     router.push("/");
   };
 
+  const takeProfile = () => {
+    router.push("/profile");
+  };
+
   return (
     <div className="z-50 flex w-full absolute top-0 py-3 items-center  shadow-md shadow-yellow-500/40 bg-gradient-to-r from-[#131862] to-[#546bab]">
       <IconButton
@@ -36,6 +40,7 @@ const Menu = (props) => {
         <i className="fas fa-bars fa-lg" />
       </IconButton>
       <IconButton
+        onClick={takeProfile}
         color="lime"
         variant="text"
         className="rounded-full flex-1 hover:text-white"

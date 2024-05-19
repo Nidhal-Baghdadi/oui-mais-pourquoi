@@ -4,7 +4,7 @@ import { useGLTF } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 import { Raycaster, Vector2 } from "three";
 import { useRouter } from "next/navigation";
-import Banner from "./Banner";
+import Banner from "@/components/models/Banner";
 import font from "@public/fonts/JMH_Typewriter_Bold.json";
 
 export default function Model(props) {
@@ -34,8 +34,6 @@ export default function Model(props) {
 
   const handlePointerDown = () => {
     if (hovered) {
-      // Perform actions when the object is clicked
-      //console.log("/lesson-" + idx);
       router.push("/journey/" + idx + "?subject=" + text);
     }
   };
