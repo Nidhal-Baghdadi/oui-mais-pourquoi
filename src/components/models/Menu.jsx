@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 const Menu = (props) => {
   const { title, onData, onToggle, idx, subject } = props;
   const [searchInput, setSearchInput] = useState("");
-  const [activeComponent, setActiveComponent] = useState("OtherComponent"); // State to manage active component
+  const [activeComponent, setActiveComponent] = useState("OtherComponent");
   const router = useRouter();
   const handleChange = (event) => {
     const data = event.target.value;

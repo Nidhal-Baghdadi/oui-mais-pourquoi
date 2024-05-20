@@ -1,14 +1,17 @@
 "use client"
 import Banner from "@/components/models/Banner";
+import Avatar from "@/components/models/Avatar";
 import RenderModel from "@/components/RenderModel"
 
-import { useParams } from "next/navigation";
 import font from "@public/fonts/gt.json";
 
 
 export default function Home() {
 
-    const params = useParams()
+    const message = "Hello again!"
+    const caracter = "Astronaut_RaeTheRedPanda"
+
+
     return (
 
 
@@ -19,12 +22,13 @@ export default function Home() {
             <RenderModel >
 
                 <Banner
-                    text={"Your profile here"}
+                    text={"profile settings\nhere"}
                     color={"yellow"}
-                    position={[0, 0, 0]}
+                    position={[0, -2, 0]}
                     scale={0.2}
                     font={font}
                 />
+                <Avatar message={message} caracter={caracter} />
 
 
             </RenderModel>

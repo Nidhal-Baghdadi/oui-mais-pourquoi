@@ -3,7 +3,7 @@ import React from "react";
 import { Float } from "@react-three/drei";
 import Journey from "@/components/models/Journey";
 import NoteBook from "@/components/models/NoteBook";
-import Door from "@/components/models/Door";
+import Rocket from "@/components/models/Rocket";
 
 const NavigationMenu = () => {
   return (
@@ -15,7 +15,7 @@ const NavigationMenu = () => {
         <NoteBook />
       </Float>
       <Float speed={1}>
-        <Door />
+        <Rocket />
       </Float>
     </group>
   );

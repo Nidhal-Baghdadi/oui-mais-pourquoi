@@ -11,7 +11,7 @@ import DependencyTree from "@/components/models/DependencyTree";
 
 const LessonCanvas = (props) => {
   const [searchData, setSearchData] = useState("Lesson");
-  const [activeComponent, setActiveComponent] = useState(""); // State to manage active component
+  const [activeComponent, setActiveComponent] = useState("");
   const { className, idx, subject } = props;
 
   const title = "Journey ";

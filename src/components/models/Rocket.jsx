@@ -1,27 +1,17 @@
 "use client";
 import React, { useRef, useState } from "react";
 import { useGLTF } from "@react-three/drei";
-import { useFrame, useThree } from "@react-three/fiber";
-import { Raycaster, Vector2 } from "three";
+import { useFrame } from "@react-three/fiber";
 
 import Banner from "@/components/models/Banner";
 import font from "@public/fonts/gt.json";
 
 export default function Model(props) {
   const group = useRef();
-  const { nodes, materials, animations } = useGLTF("/models/raju_rocket.glb");
+  const { nodes, materials } = useGLTF("/models/raju_rocket.glb");
 
   const [hovered, setHovered] = useState(false);
   const [text, setText] = useState("");
-  const { camera } = useThree();
-  const raycaster = new Raycaster();
-  const mouse = new Vector2();
-
-  const handlePointerMove = (event) => {
-    const { clientX, clientY } = event;
-    mouse.x = (clientX / window.innerWidth) * 2 - 1;
-    mouse.y = -(clientY / window.innerHeight) * 2 + 1;
-  };
 
   const handlePointerDown = () => {
     if (hovered) {
@@ -29,21 +19,22 @@ export default function Model(props) {
     }
   };
 
+  const handlePointerLeave = () => {
+    setHovered(false);
+  };
+
+  const handlePointerEnter = () => {
+    setHovered(true);
+  };
+
   useFrame((state) => {
     if (hovered) {
-      group.current.position.y =
-        -3 + 0.07 * Math.sin(5 * state.clock.elapsedTime);
-      group.current.position.x = -(
-        0.2 +
-        0.05 * Math.sin(5 * state.clock.elapsedTime)
-      );
+      group.current.position.y += 0.007 * Math.sin(5 * state.clock.elapsedTime);
+      group.current.position.x -= 0.005 * Math.sin(5 * state.clock.elapsedTime);
       setText("Get out!");
     } else {
       setText("");
     }
-    raycaster.setFromCamera(mouse, camera);
-    const intersects = raycaster.intersectObject(group.current, true);
-    setHovered(intersects.length > 0);
   });
 
   return (
@@ -54,8 +45,9 @@ export default function Model(props) {
       scale={0.044}
       position={[0.2, -3, 0]}
       rotation={[0, 0, Math.PI / 6]}
-      onPointerMove={handlePointerMove}
       onPointerDown={handlePointerDown}
+      onPointerEnter={handlePointerEnter}
+      onPointerLeave={handlePointerLeave}
     >
       <Banner
         text={text}

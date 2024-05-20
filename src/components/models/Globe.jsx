@@ -1,41 +1,19 @@
 "use client";
 import React, { useRef, useState } from "react";
 import { Float, useGLTF } from "@react-three/drei";
-import { useFrame, useThree } from "@react-three/fiber";
-import { Raycaster, Vector2 } from "three";
-import { useRouter } from "next/navigation";
+import { useFrame } from "@react-three/fiber";
 
 export default function Model(props) {
   const { nodes, materials } = useGLTF("/models/earth_stylized_low_poly.glb");
 
-  const modelRef = useRef();
   const globeMoveRef = useRef();
   const cloudMoveRef = useRef();
 
-  const [hovered, setHovered] = useState(false);
-  const router = useRouter();
-
-  const { camera } = useThree();
-  const raycaster = new Raycaster();
-  const mouse = new Vector2();
-
-  const handlePointerMove = (event) => {
-    const { clientX, clientY } = event;
-    mouse.x = (clientX / window.innerWidth) * 2 - 1;
-    mouse.y = -(clientY / window.innerHeight) * 2 + 1;
-  };
-
   const handlePointerDown = () => {
-    if (hovered) {
-      // Perform actions when the object is clicked
-      router.push("/");
-    }
+    // Perform actions when the object is clicked
   };
 
   useFrame((state) => {
-    raycaster.setFromCamera(mouse, camera);
-    const intersects = raycaster.intersectObject(modelRef.current, true);
-    setHovered(intersects.length > 0);
     globeMoveRef.current.rotation.y += Math.abs(
       0.05 * Math.sin(state.clock.elapsedTime)
     );
@@ -47,11 +25,9 @@ export default function Model(props) {
     <group
       {...props}
       dispose={null}
-      ref={modelRef}
       rotation={[Math.PI, 0, 0]}
       scale={0.005}
       position={[0, 0, 0]}
-      onPointerMove={handlePointerMove}
       onPointerDown={handlePointerDown}
     >
       <Float speed={3}>

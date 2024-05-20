@@ -1,9 +1,9 @@
-const MIN_RADIUS = 35;
-const MAX_RADIUS = 56;
+const MIN_RADIUS = 4;
+const MAX_RADIUS = 15;
 const DEPTH = 4;
 const LEFT_COLOR = "ffa700";
 const RIGHT_COLOR = "ffdb00";
-const NUM_POINTS = 20;
+const NUM_POINTS = 35;
 
 const subjects = ["Math", "Physics", "AI", "Philosophy", "History", "Geography"]
 

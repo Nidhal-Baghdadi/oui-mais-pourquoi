@@ -1,8 +1,7 @@
 "use client";
 import React, { useRef, useState } from "react";
-import { useGLTF, Text, useTexture, useFont, Float } from "@react-three/drei";
-import { useFrame, useThree } from "@react-three/fiber";
-import { Raycaster, Vector2 } from "three";
+import { useGLTF, Text, useTexture, useFont } from "@react-three/drei";
+import { useFrame } from "@react-three/fiber";
 import { useRouter } from "next/navigation";
 
 export default function Model(props) {
@@ -23,16 +22,6 @@ export default function Model(props) {
   const [hovered, setHovered] = useState(false);
   const router = useRouter();
 
-  const { camera } = useThree();
-  const raycaster = new Raycaster();
-  const mouse = new Vector2();
-
-  const handlePointerMove = (event) => {
-    const { clientX, clientY } = event;
-    mouse.x = (clientX / window.innerWidth) * 2 - 1;
-    mouse.y = -(clientY / window.innerHeight) * 2 + 1;
-  };
-
   const url = "/editor/" + num;
 
   const handlePointerDown = () => {
@@ -41,11 +30,15 @@ export default function Model(props) {
       router.push(url);
     }
   };
+  const handlePointerEnter = () => {
+    setHovered(true);
+  };
+
+  const handlePointerLeave = () => {
+    setHovered(false);
+  };
 
   useFrame((state) => {
-    raycaster.setFromCamera(mouse, camera);
-    const intersects = raycaster.intersectObject(modelRef.current, true);
-    setHovered(intersects.length > 0);
     if (!hovered) {
       modelRef.current.position.y +=
         0.005 *
@@ -60,8 +53,9 @@ export default function Model(props) {
       ref={modelRef}
       scale={1}
       position={position}
-      onPointerMove={handlePointerMove}
       onDoubleClick={handlePointerDown}
+      onPointerEnter={handlePointerEnter}
+      onPointerLeave={handlePointerLeave}
     >
       <mesh castShadow receiveShadow geometry={nodes.Plane.geometry}>
         <meshStandardMaterial

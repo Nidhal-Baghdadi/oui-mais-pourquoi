@@ -11,6 +11,7 @@
 - ["Flying saucer from Poly by Google"](https://sketchfab.com/3d-models/flying-saucer-from-poly-by-google-8e103a96696d4b4cbf01a2fcfe551ba0) by [IronEqual is licensed under Creative Commons Attribution](http://creativecommons.org/licenses/by/4.0/).
 - ["GoldSand Hourglass (magic items)"](https://sketchfab.com/3d-models/goldsand-hourglass-magic-items-44c583890d29450c8453eabe18a76c13) by [Pedram Ashoori is licensed under Creative Commons Attribution](http://creativecommons.org/licenses/by/4.0/).
 - ["Raju Rocket"](https://sketchfab.com/3d-models/raju-rocket-647837fc0f4e47afbb536e513caf2edd) by [Sba Stuff is licensed under Creative Commons Attribution](http://creativecommons.org/licenses/by/4.0/).
+- ["Ultimate Space Kit"](https://sketchfab.com/3d-models/raju-rocket-647837fc0f4e47afbb536e513caf2edd) by [Quaternius is licensed under Creative Commons Attribution](https://creativecommons.org/publicdomain/zero/1.0/).
 
 #### Images
 

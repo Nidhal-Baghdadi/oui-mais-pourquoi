@@ -7,7 +7,7 @@ import { Stars, Sparkles } from "@react-three/drei";
 const RenderModel = ({ children, className }) => {
   return (
     <Canvas className={clsx("w-screen h-screen z-10 relative", className)}>
-      <directionalLight position={[0, 3, 7]} intensity={1.7} />
+      <directionalLight position={[2, 1, 5]} intensity={1.7} color={"white"} />
       <Stars
         radius={100}
         depth={100}

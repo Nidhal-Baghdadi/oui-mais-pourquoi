@@ -276,12 +276,11 @@ const extensions = [
   StarterKit.configure({
     bulletList: {
       keepMarks: true,
-      keepAttributes: true, // TODO : Making this as `false` becase marks are not preserved when I try to preserve attrs, awaiting a bit of help
+      keepAttributes: true,
     },
     orderedList: {
       keepMarks: true,
       keepAttributes: true,
-      // TODO : Making this as `false` becase marks are not preserved when I try to preserve attrs, awaiting a bit of help
     },
   }),
   Highlight.configure({ multicolor: true }),

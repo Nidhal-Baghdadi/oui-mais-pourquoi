@@ -2,7 +2,7 @@
 import React, { useRef, useState } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
-import { Raycaster, Vector2 } from "three";
+
 import { useRouter } from "next/navigation";
 import Banner from "@/components/models/Banner";
 import font from "@public/fonts/JMH_Typewriter_Bold.json";
@@ -12,25 +12,15 @@ export default function Model(props) {
   const modelRef = useRef();
   const { text, idx } = props;
   const [hovered, setHovered] = useState(false);
-  const { camera } = useThree();
+
   const router = useRouter();
-  const raycaster = new Raycaster();
-  const mouse = new Vector2();
 
   useFrame((state, delta, xrFrame) => {
-    modelRef.current.position.y =
-      1.95 + 0.05 * Math.sin(3.5 * state.clock.elapsedTime);
     if (hovered) {
-      modelRef.current.rotation.y =
-        0.1 * Math.sin(5.6 * state.clock.elapsedTime);
+      modelRef.current.rotation.y +=
+        0.02 * Math.sin(5.6 * state.clock.elapsedTime);
     }
   });
-
-  const handlePointerMove = (event) => {
-    const { clientX, clientY } = event;
-    mouse.x = (clientX / window.innerWidth) * 2 - 1;
-    mouse.y = -(clientY / window.innerHeight) * 2 + 1;
-  };
 
   const handlePointerDown = () => {
     if (hovered) {
@@ -38,11 +28,13 @@ export default function Model(props) {
     }
   };
 
-  useFrame(() => {
-    raycaster.setFromCamera(mouse, camera);
-    const intersects = raycaster.intersectObject(modelRef.current, true);
-    setHovered(intersects.length > 0);
-  });
+  const handlePointerEnter = () => {
+    setHovered(true);
+  };
+
+  const handlePointerLeave = () => {
+    setHovered(false);
+  };
 
   return (
     <group {...props} dispose={null}>
@@ -55,11 +47,12 @@ export default function Model(props) {
         font={font}
       />
       <group
-        rotation={[Math.PI / 2, Math.PI, Math.PI / 2]}
+        rotation={[Math.PI / 2, 0, Math.PI / 2]}
         scale={0.004}
         ref={modelRef}
-        onPointerMove={handlePointerMove}
         onPointerDown={handlePointerDown}
+        onPointerEnter={handlePointerEnter}
+        onPointerLeave={handlePointerLeave}
       >
         <group rotation={[Math.PI / 2, 0, 0]}>
           <mesh
