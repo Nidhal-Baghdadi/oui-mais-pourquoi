@@ -1,7 +1,7 @@
 "use server"
 import RenderModel from "@/components/RenderModel"
 import NavigationMenu from "@/components/models/NavigationMenu"
-import { getAdapter, getCurrentSession } from "@lib/utils/auth"
+import { getCurrentSession } from "@lib/utils/auth"
 import Globe from "@/components/models/Globe"
 import Avatar from "@/components/models/Avatar"
 import Banner from "@/components/models/Banner"
@@ -15,7 +15,10 @@ export default async function Home() {
   const caracter = "Astronaut_FernandoTheFlamingo"
 
   const session = await getCurrentSession()
-  console.log(session.user)
+  if (session) {
+    console.log(session.user)
+  }
+
 
 
 

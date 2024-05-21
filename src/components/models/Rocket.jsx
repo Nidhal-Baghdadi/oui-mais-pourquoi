@@ -1,8 +1,10 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-
+import { signOut } from "next-auth/react";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import Banner from "@/components/models/Banner";
 import font from "@public/fonts/gt.json";
 
@@ -13,9 +15,12 @@ export default function Model(props) {
   const [hovered, setHovered] = useState(false);
   const [text, setText] = useState("");
 
-  const handlePointerDown = () => {
+  const router = useRouter();
+  const { data } = useSession();
+
+  const handleClick = () => {
     if (hovered) {
-      // Perform actions when the object is clicked
+      signOut();
     }
   };
 
@@ -27,6 +32,11 @@ export default function Model(props) {
     setHovered(true);
   };
 
+  useEffect(() => {
+    if (!data) {
+      router.push("/");
+    }
+  }, [data]);
   useFrame((state) => {
     if (hovered) {
       group.current.position.y += 0.007 * Math.sin(5 * state.clock.elapsedTime);
@@ -45,7 +55,7 @@ export default function Model(props) {
       scale={0.044}
       position={[0.2, -3, 0]}
       rotation={[0, 0, Math.PI / 6]}
-      onPointerDown={handlePointerDown}
+      onClick={handleClick}
       onPointerEnter={handlePointerEnter}
       onPointerLeave={handlePointerLeave}
     >
