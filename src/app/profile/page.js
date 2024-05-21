@@ -28,7 +28,7 @@ export default function Home() {
                     scale={0.2}
                     font={font}
                 />
-                <Avatar message={message} caracter={caracter} />
+                <Avatar message={message} caracter={caracter} avatar_animation={"Wave"} position={[-13, 3.5, -7]} />
 
 
             </RenderModel>
