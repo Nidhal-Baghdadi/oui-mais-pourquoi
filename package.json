@@ -12,8 +12,9 @@
   "dependencies": {
     "@auth/prisma-adapter": "^2.1.0",
     "@emailjs/browser": "^4.2.0",
+    "@hookform/resolvers": "^3.9.0",
     "@material-tailwind/react": "^2.1.9",
-    "@prisma/client": "^5.14.0",
+    "@prisma/client": "^5.19.0",
     "@react-three/cannon": "^6.6.0",
     "@react-three/drei": "^9.99.5",
     "@react-three/fiber": "^8.15.16",
@@ -32,14 +33,17 @@
     "framer-motion": "^11.0.8",
     "leva": "^0.9.35",
     "lucide-react": "^0.344.0",
+    "meshline": "^3.3.1",
     "next": "14.1.1",
     "next-auth": "^4.24.7",
+    "novel": "^0.5.0",
     "react": "^18",
     "react-dom": "^18",
-    "react-hook-form": "^7.51.0",
+    "react-hook-form": "^7.53.0",
     "sass": "^1.76.0",
     "sonner": "^1.4.3",
-    "three": "^0.162.0"
+    "three": "^0.162.0",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.13",

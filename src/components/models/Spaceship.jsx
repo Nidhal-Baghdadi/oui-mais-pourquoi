@@ -2,7 +2,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useGLTF, useAnimations, Float } from "@react-three/drei";
 import Banner from "@/components/models/Banner";
-import { Mesh } from "three";
 import font from "@public/fonts/gt.json";
 
 export default function Model(props) {

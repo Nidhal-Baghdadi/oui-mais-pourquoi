@@ -1,8 +1,8 @@
 "use client";
-import { pointsInner, pointsOuter } from "@/app/utils";
+import { pointsInnerGenerator, pointsOuterGenerator } from "@/app/utils";
 import { OrbitControls, Float } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Assistant from "@/components/models/Assistant";
 import Avatar from "@/components/models/Avatar";
 import Planet from "@/components/models/Planet";
@@ -33,14 +33,32 @@ const JourneyCanvas = ({ searchData }) => {
   const [isClicked, setClicked] = useState(false);
   const [travel, setTravel] = useState(0);
 
+  const [pointsInner, setPointsInner] = useState([]);
+  const [pointsOuter, setPointsOuter] = useState([]);
+
   const intensity = 0.8;
 
   const arrivalPosition = { x: 15, y: -55, z: 0 };
   const startPosition = { x: 3000, y: 1000, z: -2000 };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("/api/journey/data");
+        const result = await response.json();
+        setPointsInner(pointsInnerGenerator(result.slice(result.length / 2)));
+        setPointsOuter(
+          pointsOuterGenerator(result.slice(0, result.length / 2))
+        );
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const handleClick = (event) => {
     const selectedObject = event.eventObject;
-
     const selectedObjectId = selectedObject.name;
     setNewPosition(selectedObject.position);
 
@@ -75,7 +93,7 @@ const JourneyCanvas = ({ searchData }) => {
             .toLowerCase()
             .includes(searchData.toLowerCase());
         });
-
+  console.log(filteredPointsOuter);
   useFrame((state) => {
     if (selectedPoint != null) {
       lightPosition.current.position.x +=
@@ -114,7 +132,7 @@ const JourneyCanvas = ({ searchData }) => {
     <group scale={0.077}>
       <group scale={6} onClick={handleAvatarClick}>
         <Avatar
-          message="Embark on\na new journey!"
+          message={journeyAvatar.message}
           caracter="Astronaut_BarbaraTheBee"
           avatar_animation="Yes"
           position={[-13, 2.2, 0]}
@@ -164,7 +182,7 @@ const JourneyCanvas = ({ searchData }) => {
               position={point.position}
               scale={selectedPoint == point.idx ? 1 : 0.5}
             >
-              <Planet planet={(point.idx % 11) + 1} />
+              <Planet planet={(point.data.subject.length % 11) + 1} />
             </group>
           </Float>
         ))}
@@ -180,7 +198,7 @@ const JourneyCanvas = ({ searchData }) => {
               position={point.position}
               scale={selectedPoint == point.idx ? 1 : 0.5}
             >
-              <Planet planet={(point.idx % 11) + 1} />
+              <Planet planet={(point.data.subject.length % 11) + 1} />
             </group>
           </Float>
         ))}

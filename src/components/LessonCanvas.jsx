@@ -12,7 +12,7 @@ import DependencyTree from "@/components/models/DependencyTree";
 const LessonCanvas = (props) => {
   const [searchData, setSearchData] = useState("Lesson");
   const [activeComponent, setActiveComponent] = useState("");
-  const { className, idx, subject } = props;
+  const { className, idx, subject, course } = props;
 
   const title = "Journey ";
   const handleSearchdData = (data) => {
@@ -22,7 +22,6 @@ const LessonCanvas = (props) => {
   const handleToggle = (activeComponent) => {
     setActiveComponent(activeComponent);
   };
-
   return (
     <>
       <div className="flex flex-col w-full h-screen absolute">
@@ -35,7 +34,7 @@ const LessonCanvas = (props) => {
         />
 
         {activeComponent === "Lesson" ? (
-          <Lesson title="Lesson" idx={idx} />
+          <Lesson title="Lesson" idx={idx} course={course} />
         ) : (
           <DependencyTree idx={idx} />
         )}

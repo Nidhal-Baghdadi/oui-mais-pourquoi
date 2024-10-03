@@ -17,6 +17,9 @@ export default withMT({
         muted: 'rgb(var(--muted))',
         accent: 'rgb(var(--accent))',
       },
+      backdropBlur: {
+        xs: '2px',
+      }
     },
   },
   plugins: [

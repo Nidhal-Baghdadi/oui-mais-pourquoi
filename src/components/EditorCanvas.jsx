@@ -10,7 +10,7 @@ import Lesson from "@/components/models/Lesson";
 
 const EditorCanvas = (props) => {
   const [searchData, setSearchData] = useState("Lesson");
-  const { className, idx } = props;
+  const { className, idx, course } = props;
 
   const title = "Lesson ";
   const handleSearchdData = (data) => {
@@ -29,7 +29,7 @@ const EditorCanvas = (props) => {
           idx={idx}
         />
 
-        <Lesson title="Lesson" idx={idx} />
+        <Lesson title="Lesson" idx={idx} course={course} />
       </div>
       <Canvas className={clsx("w-full h-screen z-10 relative", className)}>
         <directionalLight position={[0, 3, 7]} intensity={1.7} />

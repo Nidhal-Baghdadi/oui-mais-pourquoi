@@ -4,6 +4,9 @@ import clsx from "clsx";
 import "tailwindcss/tailwind.css"
 import Provider from "@/components/Provider";
 
+
+
+
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter"
@@ -33,5 +36,7 @@ export default function RootLayout({ children }) {
 
       </body>
     </html>
+
+
   );
 }

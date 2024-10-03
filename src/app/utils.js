@@ -1,11 +1,10 @@
 
 
-const MIN_RADIUS = 4;
-const MAX_RADIUS = 15;
+const MIN_RADIUS = 8;
+const MAX_RADIUS = 9;
 const DEPTH = 4;
 const LEFT_COLOR = "ffa700";
 const RIGHT_COLOR = "ffdb00";
-const NUM_POINTS = 35;
 
 const subjects = ["Math", "Physics", "AI", "Philosophy", "History", "Geography"]
 
@@ -47,50 +46,49 @@ const randomFromInterval = (min, max) => {
     return Math.random() * (max - min) + min;
 };
 
-export const pointsInner = Array.from(
-    { length: NUM_POINTS },
-    (v, k) => k
-).map((num) => {
-    const randomRadius = randomFromInterval(MIN_RADIUS, MAX_RADIUS);
-    const randomAngle = Math.random() * Math.PI * 2;
+export const pointsInnerGenerator = (journeysInner) => {
 
-    const x = Math.cos(randomAngle) * randomRadius;
-    const y = Math.sin(randomAngle) * randomRadius;
-    const z = randomFromInterval(-DEPTH, DEPTH);
+    return journeysInner.map((journey) => {
+        const randomRadius = randomFromInterval(MIN_RADIUS, MAX_RADIUS);
+        const randomAngle = Math.random() * Math.PI * 2;
 
-    const color = calculateColor(x);
+        const x = Math.cos(randomAngle) * randomRadius;
+        const y = Math.sin(randomAngle) * randomRadius;
+        const z = randomFromInterval(-DEPTH, DEPTH);
 
-    return {
-        idx: num,
-        position: [x, y, z],
-        color,
-        data: {
-            subject: subjects[num % subjects.length]
+        const color = calculateColor(x);
 
-        }
-    };
-});
+        return {
+            idx: journey.id,
+            position: [x, y, z],
+            color,
+            data: {
+                subject: journey.subject
 
-export const pointsOuter = Array.from(
-    { length: NUM_POINTS / 4 },
-    (v, k) => k + NUM_POINTS
-).map((num) => {
-    const randomRadius = randomFromInterval(MIN_RADIUS / 2, MAX_RADIUS * 2);
-    const angle = Math.random() * Math.PI * 2;
+            }
+        };
+    });
+}
+export const pointsOuterGenerator = (journeysOuter) => {
 
-    const x = Math.cos(angle) * randomRadius;
-    const y = Math.sin(angle) * randomRadius;
-    const z = randomFromInterval(-DEPTH * 10, DEPTH * 10);
+    return journeysOuter.map((journey) => {
+        const randomRadius = randomFromInterval(MIN_RADIUS / 2, MAX_RADIUS * 2);
+        const angle = Math.random() * Math.PI * 2;
 
-    const color = calculateColor(x);
+        const x = Math.cos(angle) * randomRadius;
+        const y = Math.sin(angle) * randomRadius;
+        const z = randomFromInterval(-DEPTH * 10, DEPTH * 10);
 
-    return {
-        idx: num,
-        position: [x, y, z],
-        color,
-        data: {
-            subject: subjects[num % subjects.length],
-        }
+        const color = calculateColor(x);
 
-    };
-});
+        return {
+            idx: journey.id,
+            position: [x, y, z],
+            color,
+            data: {
+                subject: journey.subject
+            }
+
+        };
+    });
+}
