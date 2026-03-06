@@ -40,7 +40,9 @@
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.53.0",
+    "react-use-measure": "^2.1.7",
     "sass": "^1.76.0",
+    "sharp": "^0.34.5",
     "sonner": "^1.4.3",
     "three": "^0.162.0",
     "zod": "^3.23.8"
